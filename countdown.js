@@ -1,15 +1,20 @@
-var counter, intervalId;
 function countdown(seconds){
-  counter = seconds;
-  intervalId = setInterval(printTime, 1000);
-}
+  var count = function(){
+    return seconds;
+  };
 
-function printTime(){
-  console.log(counter);
-  counter--;
-  if(counter < 0) {
-    clearInterval(intervalId);
-  }
+  var descreaseCount = function(){
+    return seconds--;
+  };
+
+  var intervalId = setInterval(function(){
+    console.log(count());
+    descreaseCount();
+    if(count() < 0){
+      clearInterval(intervalId);
+    }
+  }, 1000);
+
 }
 
 countdown(10);
